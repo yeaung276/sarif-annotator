@@ -1,0 +1,11 @@
+{
+  "name": "sarif-annotator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yeaung276/sarif-annotator.git",
+  "author": "yeaung276 <yeyintaung.ya276@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.0"
+  }
+}
