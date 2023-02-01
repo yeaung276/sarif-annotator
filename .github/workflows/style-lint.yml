@@ -26,4 +26,5 @@ jobs:
         id: ml
         uses: oxsecurity/megalinter@v6
         env:
+          EXTENDS: .maga-linter.yml
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
