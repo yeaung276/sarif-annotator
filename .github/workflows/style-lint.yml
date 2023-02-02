@@ -28,6 +28,10 @@ jobs:
         env:
           EXTENDS: .maga-linter.yml
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Annotation
+        uses: yeaung276/sarif-annotator@test
+        with: 
+          sarif_name: 'megalinter-reports/megalinter-report.sarif'
       - name: Archive production artifacts
         if: ${{ success() }} || ${{ failure() }}
         uses: actions/upload-artifact@v3

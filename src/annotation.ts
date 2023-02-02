@@ -30,7 +30,7 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
     }
   
     const result = await octokit.rest.checks.listForRef(request)
-    const exists = result.data.check_runs.find(check => check.name === 'Annotation') // improve 'Annotation'
+    const exists = result.data.check_runs.find(check => check.name === context.workflow)
     const accept = 'application/vnd.github.v3+json'
     if (exists) {
       core.info('check exists, reusing...')
@@ -55,7 +55,7 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
         accept,
         head_sha: sha,
         conclusion: 'success',
-        name: 'Annotation',
+        name: context.workflow,
         status: 'completed',
         output: {
             title: toolName,

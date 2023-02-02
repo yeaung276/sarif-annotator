@@ -1,14 +1,13 @@
 import * as core from '@actions/core';
-import {context, getOctokit} from '@actions/github'
 import fs from 'fs/promises';
-import { Log, Result, Run } from 'sarif';
+import { Log, Run } from 'sarif';
 import { getAnnotationsFromSarifResult, publishAnnotation } from './annotation';
 import { json } from './result';
 
 const config = {
-    path: "./yeaung276/sarif-annotator/test/megalinter-report.sarif",
-    include: ['ESLint'],
-    exclude: null as null | string[],
+    path: core.getInput('sarif_path'),
+    include: core.getInput('include'),
+    exclude: core.getInput('exclude'),
 }
 
 async function readFile(): Promise<Log | undefined>{
