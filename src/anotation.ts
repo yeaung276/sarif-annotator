@@ -1,5 +1,6 @@
 import {context, getOctokit} from '@actions/github';
 import * as core from '@actions/core';
+import { Message, Result } from 'sarif';
 
 export type AnnotationLevel = 'notice' | 'warning' | 'failure';
 
@@ -66,17 +67,46 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
     }
 }
 
-export function getAnnotationFromSarif(): Annotation[]{
-    return [
-        {
-            path: 'test.js',
-            start_line: 1,
-            end_line: 1,
-            start_column: 10,
-            end_column: 14,
-            annotation_level: 'warning',
-            message: "'test' is defined but never used.",
-            title: "@typescript-eslint/no-unused-vars"
+function convertAnotationLevel(l: string | undefined): AnnotationLevel {
+    switch (l) {
+      case 'error':
+        return 'failure'
+        break
+      case 'note':
+        return 'notice'
+      default:
+        return l as AnnotationLevel
+    }
+  }
+
+export function getAnnotationsFromSarifResult(results: Result[]): Annotation[]{
+    return results.map((result) => {
+        /*
+         * Assume that locations will contain zero or one element.
+         * 3.27.12 locations property
+         * https://docs.oasis-open.org/sarif/sarif/v2.0/csprd02/sarif-v2.0-csprd02.html#_Toc10127841
+         */
+        const location = result.locations?.[0].physicalLocation ?? {}
+        return {
+            path: location.artifactLocation?.uri ?? '',
+            start_line: location.region?.startLine ?? 0,
+            end_line: location.region?.endLine ?? 0,
+            start_column: location.region?.startColumn ?? 0,
+            end_column: location.region?.endColumn ?? 0,
+            annotation_level: convertAnotationLevel(result.level),
+            message: stringFromMessage(result.message),
+            title: result.ruleId ?? 'Unspecified'
         }
-    ]
+    })
+}
+
+export function matchFilePath(path: string){
+    return new RegExp('(?<=files:\/\/).*$').exec(path)?.[0]
+}
+
+const regex = RegExp(/<\/?\w+>/g)
+
+function stringFromMessage(message: Message): string {
+  const text = message.text ?? message.markdown ?? ''
+  return text.replace(regex, `'`)
 }
