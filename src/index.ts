@@ -57,7 +57,7 @@ async function annotate(report: Log['runs'][0]){
             text: 'text-output',
             annotations: [
                 {
-                    path: 'file://test.js',
+                    path: 'test.js',
                     start_line: 1,
                     end_line: 1,
                     // annotations only support columns in one line
