@@ -1,3 +1,3 @@
-function test(){
-    var a
+function testab(){
+    var aab
 }
