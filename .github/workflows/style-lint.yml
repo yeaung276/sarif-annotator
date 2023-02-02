@@ -32,7 +32,7 @@ jobs:
         if: ${{ success() }} || ${{ failure() }}
         uses: yeaung276/sarif-annotator@test
         with: 
-          sarif_name: 'megalinter-reports/megalinter-report.sarif'
+          sarif_path: 'megalinter-reports/megalinter-report.sarif'
       - name: Archive production artifacts
         if: ${{ success() }} || ${{ failure() }}
         uses: actions/upload-artifact@v3

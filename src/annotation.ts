@@ -16,7 +16,6 @@ type Annotation = {
 }
 
 export async function publishAnnotation(toolName: string, annotations: Annotation[]){
-    console.log(context)
     core.info('publishing output')
     const token = core.getInput('token')
     const octokit = getOctokit(token)
