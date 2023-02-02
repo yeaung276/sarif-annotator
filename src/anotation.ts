@@ -1,7 +1,20 @@
 import {context, getOctokit} from '@actions/github';
 import * as core from '@actions/core';
 
-export async function publishAnnotation(){
+export type AnnotationLevel = 'notice' | 'warning' | 'failure';
+
+type Annotation = {
+    path: string
+    start_line: number
+    end_line: number,
+    start_column: number,
+    end_column: number,
+    annotation_level: AnnotationLevel,
+    message: string,
+    title: string
+}
+
+export async function publishAnnotation(toolName: string, annotations: Annotation[]){
     core.info('publishing output')
     const token = core.getInput('token')
     const octokit = getOctokit(token)
@@ -27,22 +40,10 @@ export async function publishAnnotation(){
         check_run_id: id,
         status: 'completed',
         output: {
-            title: 'title-output',
-            summary: 'summary-output',
-            text: 'text-output',
-            annotations: [
-                {
-                    path: 'test.js',
-                    start_line: 1,
-                    end_line: 1,
-                    // annotations only support columns in one line
-                    start_column: 10,
-                    end_column: 14,
-                    annotation_level: 'warning',
-                    message: "'test' is defined but never used.",
-                    title: "@typescript-eslint/no-unused-vars"
-                }
-            ]
+            title: toolName,
+            summary: `${annotations.length} issue(s) found.`,
+            text: `${annotations.length} issue(s) found.`,
+            annotations,
         }
       })
     } else {
@@ -55,24 +56,27 @@ export async function publishAnnotation(){
         name: 'Annotation',
         status: 'completed',
         output: {
-            title: 'title-output',
-            summary: 'summary-output',
-            text: 'text-output',
-            annotations: [
-                {
-                    path: 'test.js',
-                    start_line: 1,
-                    end_line: 1,
-                    // annotations only support columns in one line
-                    start_column: 10,
-                    end_column: 14,
-                    annotation_level: 'warning',
-                    message: "'test' is defined but never used.",
-                    title: "@typescript-eslint/no-unused-vars"
-                }
-            ]
+            title: toolName,
+            summary: `${annotations.length} issue(s) found.`,
+            text: `${annotations.length} issue(s) found.`,
+            annotations,
         }
       }
       await octokit.rest.checks.create(createRequest)
     }
+}
+
+export function getAnnotationFromSarif(): Annotation[]{
+    return [
+        {
+            path: 'test.js',
+            start_line: 1,
+            end_line: 1,
+            start_column: 10,
+            end_column: 14,
+            annotation_level: 'warning',
+            message: "'test' is defined but never used.",
+            title: "@typescript-eslint/no-unused-vars"
+        }
+    ]
 }

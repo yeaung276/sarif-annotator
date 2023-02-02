@@ -2,7 +2,7 @@ import * as core from '@actions/core';
 import {context, getOctokit} from '@actions/github'
 import fs from 'fs/promises';
 import { Log, Result } from 'sarif';
-import { publishAnnotation } from './anotation';
+import { getAnnotationFromSarif, publishAnnotation } from './anotation';
 import { json } from './result';
 
 const config = {
@@ -37,7 +37,7 @@ function includeInReports(toolName: string){
 
 async function annotate(report: Log['runs'][0]){
     if(includeInReports(report.tool.driver.name)){
-        await publishAnnotation()
+        await publishAnnotation(report.tool.driver.fullName || report.tool.driver.name, getAnnotationFromSarif())
     }
     
 }
