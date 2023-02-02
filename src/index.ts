@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import { Log } from 'sarif';
 
 const config = {
-    path: "./megalinter-report.sarif",
+    path: ".yeaung276/sarif-annotator/test/megalinter-report.sarif",
     include: ['ESLint'],
     exclude: null as null | string[],
 }
@@ -13,7 +13,6 @@ async function readFile(): Promise<Log | undefined>{
         const data = await fs.readFile(config.path, { encoding: 'utf8' });
         return JSON.parse(data)
       } catch (err) {
-        core.error('File not found in workspace')
         console.log(err)
         core.setFailed('File not found')
       }
