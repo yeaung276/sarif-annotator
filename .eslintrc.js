@@ -25,7 +25,6 @@ module.exports = {
       'no-use-before-define': 'off',
       '@typescript-eslint/no-use-before-define': ['error'],
       '@typescript-eslint/no-explicit-any': 'off',
-      'react/prop-types': 'off',
       'prettier/prettier': [
         'error',
         {
@@ -35,16 +34,8 @@ module.exports = {
       'no-console': 'off',
       'no-underscore-dangle': 'off',
       'import/no-unresolved': 'off',
-      'react/jsx-filename-extension': [
-        'error',
-        {
-          extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        },
-      ],
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      'react/jsx-props-no-spreading': 'off',
-      'react/require-default-props': 'off',
       'import/extensions': [
         'error',
         'ignorePackages',
@@ -56,103 +47,13 @@ module.exports = {
           mjs: 'never',
         },
       ],
-      'import/no-extraneous-dependencies': [
-        'warn',
-        {
-          devDependencies: [
-            '**/*.test.ts',
-            '**/*.test.tsx',
-            '**/test-utils.tsx',
-            '**/rtl-test-utils.tsx',
-            '**/rtl-store.ts',
-            '**/setupTest.js',
-            '**/cypress.config.ts',
-            '**/__mocks__/**',
-            '**/*.stories.tsx',
-            '**/cypress/**/*.ts',
-          ],
-        },
-      ],
-      'cypress/assertion-before-screenshot': 'warn',
-      'cypress/no-force': 'warn',
-      'react/forbid-dom-props': ['warn', { forbid: ['style'] }],
-      'react/forbid-component-props': ['warn', { forbid: ['style'] }],
-      'react/jsx-curly-newline': 'off',
-      'react/no-unused-prop-types': 'warn',
-      'react/no-array-index-key': 'warn',
-      '@typescript-eslint/ban-ts-comment': 'warn',
-      'react/jsx-no-bind': 'warn',
       'no-shadow': 'off',
       '@typescript-eslint/no-shadow': 'warn',
       'no-useless-escape': 'warn',
       'import/prefer-default-export': 'warn',
       'no-nested-ternary': 'warn',
       camelcase: 'warn',
-      'import/order': [
-        'warn',
-        {
-          'newlines-between': 'always',
-          groups: [
-            'external',
-            'builtin',
-            'internal',
-            'sibling',
-            'parent',
-            'index',
-          ],
-          pathGroups: [
-            {
-              pattern: '@alphafounders/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '@careos/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: 'presentation/**',
-              group: 'internal',
-            },
-            {
-              pattern: 'data/**',
-              group: 'internal',
-            },
-            {
-              pattern: 'mock-data/**',
-              group: 'internal',
-            },
-            {
-              pattern: 'shared/**',
-              group: 'internal',
-            },
-            {
-              pattern: 'interfaces/**',
-              group: 'internal',
-            },
-            {
-              pattern: 'config/**',
-              group: 'internal',
-            },
-            {
-              pattern: 'scss/**',
-              group: 'internal',
-            },
-          ],
-          pathGroupsExcludedImportTypes: ['internal'],
-          alphabetize: {
-            order: 'asc',
-            caseInsensitive: true,
-          },
-        },
-      ],
-      'react/function-component-definition': 'warn',
       radix: 'warn',
-      'react/destructuring-assignment': 'warn',
-      'jsx-a11y/no-noninteractive-tabindex': 'warn',
-      'jsx-a11y/tabindex-no-positive': 'warn',
-      'react/jsx-wrap-multilines': 'off',
       'no-param-reassign': [
         'error',
         { props: true, ignorePropertyModificationsFor: ['state'] },
@@ -160,12 +61,7 @@ module.exports = {
       'class-methods-use-this': 'warn',
       'default-param-last': 'warn',
       'no-unsafe-optional-chaining': 'warn',
-      'react/jsx-no-constructed-context-values': 'warn',
-      'react/jsx-no-useless-fragment': 'warn',
-      'react/no-unstable-nested-components': 'warn',
       'no-promise-executor-return': 'warn',
-      'react/display-name': 'off',
-      'react/jsx-key': 'off',
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
