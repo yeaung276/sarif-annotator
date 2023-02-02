@@ -29,6 +29,7 @@ jobs:
           EXTENDS: .maga-linter.yml
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Annotation
+        if: ${{ success() }} || ${{ failure() }}
         uses: yeaung276/sarif-annotator@test
         with: 
           sarif_name: 'megalinter-reports/megalinter-report.sarif'
