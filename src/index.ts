@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import { Log } from 'sarif';
 
 const config = {
-    path: "megalinter-report.sarif",
+    path: "./megalinter-report.sarif",
     include: ['ESLint'],
     exclude: null as null | string[],
 }
