@@ -37,6 +37,7 @@ function includeInReports(toolName: string){
 async function annotate(report: Log['runs'][0]){
     if(includeInReports(report.tool.driver.name)){
         const token = core.getInput('token')
+        console.log(token)
         const octokit = getOctokit(token)
         let sha = context.sha
         if (context.payload.pull_request) {
