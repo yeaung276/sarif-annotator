@@ -16,6 +16,99 @@
             "artifacts": [
                 {
                     "location": {
+                        "uri": "file://.eslintrc.js"
+                    }
+                },
+                {
+                    "location": {
+                        "uri": "file://index.js"
+                    }
+                },
+                {
+                    "location": {
+                        "uri": "file://test.js"
+                    }
+                }
+            ],
+            "properties": {
+                "megalinter": {
+                    "docUrl": "https://megalinter.io/6.18.0/descriptors/javascript_eslint",
+                    "linterKey": "JAVASCRIPT_ES",
+                    "linterVersion": "8.31.0"
+                }
+            },
+            "results": [
+                {
+                    "level": "warning",
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "index": 2,
+                                    "uri": "file://test.js"
+                                },
+                                "region": {
+                                    "endColumn": 14,
+                                    "endLine": 1,
+                                    "startColumn": 10,
+                                    "startLine": 1
+                                }
+                            }
+                        }
+                    ],
+                    "message": {
+                        "text": "'test' is defined but never used."
+                    },
+                    "ruleId": "@typescript-eslint/no-unused-vars",
+                    "ruleIndex": 0
+                },
+                {
+                    "level": "warning",
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "index": 2,
+                                    "uri": "file://test.js"
+                                },
+                                "region": {
+                                    "endColumn": 10,
+                                    "endLine": 2,
+                                    "startColumn": 9,
+                                    "startLine": 2
+                                }
+                            }
+                        }
+                    ],
+                    "message": {
+                        "text": "'a' is defined but never used."
+                    },
+                    "ruleId": "@typescript-eslint/no-unused-vars",
+                    "ruleIndex": 0
+                }
+            ],
+            "tool": {
+                "driver": {
+                    "informationUri": "https://eslint.org",
+                    "name": "ESLint (MegaLinter JAVASCRIPT_ES)",
+                    "rules": [
+                        {
+                            "helpUri": "https://typescript-eslint.io/rules/no-unused-vars",
+                            "id": "@typescript-eslint/no-unused-vars",
+                            "properties": {},
+                            "shortDescription": {
+                                "text": "Disallow unused variables"
+                            }
+                        }
+                    ],
+                    "version": "8.31.0"
+                }
+            }
+        },
+        {
+            "artifacts": [
+                {
+                    "location": {
                         "uri": "file://package.json"
                     }
                 }

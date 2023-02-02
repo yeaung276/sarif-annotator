@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 
 const config = {
     path: "megalinter-report.sarif",
-    include: ['gitleaks'],
+    include: ['ESLint'],
     exclude: null,
 }
 

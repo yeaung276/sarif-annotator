@@ -1,0 +1,16 @@
+---
+# MegaLinter GitHub Action configuration file
+# More info at https://megalinter.io
+name: Annotation
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Annotation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Annotator
+        uses: yeaung276/sarif-annotator@test
