@@ -2,7 +2,7 @@ import * as core from '@actions/core';
 import {context, getOctokit} from '@actions/github'
 import fs from 'fs/promises';
 import { Log, Result, Run } from 'sarif';
-import { getAnnotationsFromSarifResult, publishAnnotation } from './anotation';
+import { getAnnotationsFromSarifResult, publishAnnotation } from './annotation';
 import { json } from './result';
 
 const config = {

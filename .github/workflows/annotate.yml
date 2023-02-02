@@ -13,5 +13,5 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - name: Annotator
+      - name: Annotate
         uses: yeaung276/sarif-annotator@test
