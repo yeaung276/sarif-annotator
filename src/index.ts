@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import fs from 'fs/promises';
+import {readdir} from 'fs';
 import { exec } from "child_process";
 import { Log } from 'sarif';
 
@@ -10,7 +11,17 @@ const config = {
 }
 
 async function readFile(): Promise<Log | undefined>{
-    exec('ls')
+    readdir('.', (err: any, files: any) => {
+        //handling error
+        if (err) {
+            return console.log('Unable to scan directory: ' + err);
+        } 
+        //listing all files using forEach
+        files.forEach(function (file: any) {
+            // Do whatever you want to do with the file
+            console.log(file); 
+        });
+    });
     try {
         const data = await fs.readFile(config.path, { encoding: 'utf8' });
         return JSON.parse(data)
