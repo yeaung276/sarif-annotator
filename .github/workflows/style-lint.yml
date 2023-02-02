@@ -14,6 +14,7 @@ concurrency:
 jobs:
   build:
     name: MegaLinter
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
