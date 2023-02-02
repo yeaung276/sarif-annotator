@@ -7,5 +7,5 @@ inputs:
     required: true
     default: ./results.sarif
 runs:
-  using: node14
+  using: node16
   main: index.js
