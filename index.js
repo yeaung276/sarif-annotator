@@ -13,6 +13,7 @@ async function readFile(){
         return JSON.parse(data)
       } catch (err) {
         core.error('File not found in workspace')
+        console.log(err)
         return {}
       }
 }
