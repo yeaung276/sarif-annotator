@@ -1,3 +1,4 @@
+const core = require('@actions/core');
 const fs = require('fs/promises');
 
 const config = {
@@ -11,6 +12,7 @@ async function readFile(){
         const data = await fs.readFile(config.path, { encoding: 'utf8' });
         return JSON.parse(data)
       } catch (err) {
+        core.error('File not found in workspace')
         return {}
       }
 }
