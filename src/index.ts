@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import fs from 'fs/promises';
 import { Log } from 'sarif';
+import { json } from './result';
 
 const config = {
     path: "./yeaung276/sarif-annotator/test/megalinter-report.sarif",
@@ -9,19 +10,13 @@ const config = {
 }
 
 async function readFile(): Promise<Log | undefined>{
-    const files = await fs.readdir('.');
-
-    files.forEach(function (file) {
-        // Do whatever you want to do with the file
-        console.log(file); 
-    });
     try {
         const data = await fs.readFile(config.path, { encoding: 'utf8' });
         return JSON.parse(data)
-      } catch (err) {
+    } catch (err) {
         console.log(err)
-        core.setFailed('File not found')
-      }
+        return json as Log
+    }
 }
 
 function normalizeName(name: string){
