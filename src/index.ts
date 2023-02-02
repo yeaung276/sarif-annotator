@@ -1,14 +1,16 @@
 import * as core from '@actions/core';
 import fs from 'fs/promises';
+import { exec } from "child_process";
 import { Log } from 'sarif';
 
 const config = {
-    path: ".yeaung276/sarif-annotator/test/megalinter-report.sarif",
+    path: "./yeaung276/sarif-annotator/test/megalinter-report.sarif",
     include: ['ESLint'],
     exclude: null as null | string[],
 }
 
 async function readFile(): Promise<Log | undefined>{
+    exec('ls')
     try {
         const data = await fs.readFile(config.path, { encoding: 'utf8' });
         return JSON.parse(data)
