@@ -8,4 +8,4 @@ inputs:
     default: ./results.sarif
 runs:
   using: node12
-  main: action/index.js
+  main: index.js
