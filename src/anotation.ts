@@ -88,7 +88,7 @@ export function getAnnotationsFromSarifResult(results: Result[]): Annotation[]{
          */
         const location = result.locations?.[0].physicalLocation ?? {}
         return {
-            path: location.artifactLocation?.uri ?? '',
+            path: matchFilePath(location.artifactLocation?.uri || ''),
             start_line: location.region?.startLine ?? 0,
             end_line: location.region?.endLine ?? 0,
             start_column: location.region?.startColumn ?? 0,
@@ -101,7 +101,7 @@ export function getAnnotationsFromSarifResult(results: Result[]): Annotation[]{
 }
 
 export function matchFilePath(path: string){
-    return new RegExp('(?<=files:\/\/).*$').exec(path)?.[0]
+    return new RegExp('(?<=file:\/\/).*$').exec(path)?.[0] ?? ''
 }
 
 const regex = RegExp(/<\/?\w+>/g)
