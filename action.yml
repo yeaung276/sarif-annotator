@@ -1,3 +1,11 @@
 ---
 name: 
 description: Annotate SARIF analysis files
+inputs:
+  sarif_path:
+    description: sarif analysis file location
+    required: true
+    default: ./results.sarif
+runs:
+  using: node12
+  main: action/index.js
