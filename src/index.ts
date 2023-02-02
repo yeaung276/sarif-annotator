@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
+import {context, getOctokit} from '@actions/github'
 import fs from 'fs/promises';
-import { Log } from 'sarif';
+import { Log, Result } from 'sarif';
 import { json } from './result';
 
 const config = {
@@ -33,9 +34,42 @@ function includeInReports(toolName: string){
     return true
 }
 
-function annotate(report: Log['runs'][0]){
+async function annotate(report: Log['runs'][0]){
     if(includeInReports(report.tool.driver.name)){
-        console.log(report)
+        const token = core.getInput('token')
+        const octokit = getOctokit(token)
+        let sha = context.sha
+        if (context.payload.pull_request) {
+          sha = context.payload.pull_request.head.sha
+        }
+
+        const createRequest = {
+        ...context.repo,
+        accept: 'application/vnd.github.v3+json',
+        head_sha: sha,
+        conclusion: 'success',
+        name: 'title-test',
+        status: 'completed',
+        output: {
+            title: 'title-output',
+            summary: 'summary-output',
+            text: 'text-output',
+            annotations: [
+                {
+                    path: 'file://test.js',
+                    start_line: 1,
+                    end_line: 1,
+                    // annotations only support columns in one line
+                    start_column: 10,
+                    end_column: 14,
+                    annotation_level: 'warning',
+                    message: "'test' is defined but never used.",
+                    title: "@typescript-eslint/no-unused-vars"
+                }
+            ]
+        }
+        }
+        await octokit.rest.checks.create(createRequest)
     }
     
 }

@@ -6,6 +6,12 @@ inputs:
     description: sarif analysis file location
     required: true
     default: ./results.sarif
+  token:
+    type: string
+    description: Github access token
+    required: true
+    default: ${{github.token}}
+
 runs:
   using: node16
   main: lib/index.js
