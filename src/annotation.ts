@@ -26,7 +26,7 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
   }
   core.info(`publishing output for ${toolName}`)
   for(const group of splitEvery(MAX_ANNOTATIONS_PER_REQUEST, annotations)){
-    sendRequest({
+    await sendRequest({
       title: toolName,
       summary: `${annotations.length} issue(s) found.`,
       text: `${annotations.length} issue(s) found.`,
