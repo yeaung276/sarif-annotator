@@ -105,7 +105,7 @@ export function getAnnotationsFromSarifResult(results: Result[]): Annotation[]{
 }
 
 export function matchFilePath(path: string){
-    return new RegExp('(?<=file:\/\/).*$').exec(path)?.[0] ?? ''
+    return new RegExp('(?<=file:\/\/).*$').exec(path)?.[0] ?? path
 }
 
 const regex = RegExp(/<\/?\w+>/g)

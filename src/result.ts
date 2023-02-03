@@ -47,25 +47,25 @@ export const json = {
                 }
             }
         },
-        // {
-        //     "properties": {
-        //         "megalinter": {
-        //             "docUrl": "https://megalinter.io/6.18.0/descriptors/repository_checkov",
-        //             "linterKey": "REPOSITORY_CHECKOV",
-        //             "linterVersion": "2.1.244"
-        //         }
-        //     },
-        //     "results": [],
-        //     "tool": {
-        //         "driver": {
-        //             "informationUri": "https://checkov.io",
-        //             "name": "Checkov (MegaLinter REPOSITORY_CHECKOV)",
-        //             "organization": "bridgecrew",
-        //             "rules": [],
-        //             "version": "2.1.244"
-        //         }
-        //     }
-        // },
+        {
+            "properties": {
+                "megalinter": {
+                    "docUrl": "https://megalinter.io/6.18.0/descriptors/repository_checkov",
+                    "linterKey": "REPOSITORY_CHECKOV",
+                    "linterVersion": "2.1.244"
+                }
+            },
+            "results": [],
+            "tool": {
+                "driver": {
+                    "informationUri": "https://checkov.io",
+                    "name": "Checkov (MegaLinter REPOSITORY_CHECKOV)",
+                    "organization": "bridgecrew",
+                    "rules": [],
+                    "version": "2.1.244"
+                }
+            }
+        },
         {
             "columnKind": "utf16CodeUnits",
             "properties": {
