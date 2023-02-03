@@ -4,7 +4,7 @@ import { Message, Result } from 'sarif';
 import { splitEvery } from 'ramda';
 import { sendRequest } from './github';
 
-const MAX_ANNOTATIONS_PER_REQUEST = 1;
+const MAX_ANNOTATIONS_PER_REQUEST = 40;
 
 type AnnotationLevel = 'notice' | 'warning' | 'failure';
 
