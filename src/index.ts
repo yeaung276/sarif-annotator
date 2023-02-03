@@ -2,7 +2,6 @@ import * as core from '@actions/core';
 import fs from 'fs/promises';
 import { Log, Run } from 'sarif';
 import { getAnnotationsFromSarifResult, publishAnnotation } from './annotation';
-import { json } from './result';
 
 const config = {
     path: core.getInput('sarif_path'),
@@ -16,7 +15,6 @@ async function readFile(): Promise<Log | undefined>{
         return JSON.parse(data)
     } catch (err) {
         console.log(err)
-        return json as Log
     }
 }
 
