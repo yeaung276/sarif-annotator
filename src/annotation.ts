@@ -30,7 +30,18 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
       title: toolName,
       summary: `${annotations.length} issue(s) found.`,
       text: `${annotations.length} issue(s) found.`,
-      annotations,
+      annotations: [
+        {
+          "path":"src/annotation.ts",
+          "start_line":1,
+          "end_line":1,
+          "start_column":9,
+          "end_column":52,
+          "annotation_level":"failure",
+          "title":"prettier/prettier",
+          "message": "1:9  Replace `context,·getOctokit}·from·\'@actions/github\'` with `·context,·getOctokit·}·from·\"@actions/github\"`",
+        }
+      ]
     })
   }
 
