@@ -4,7 +4,7 @@ import { Message, Result } from 'sarif';
 import { splitEvery } from 'ramda';
 import { sendRequest } from './github';
 
-const MAX_ANNOTATIONS_PER_REQUEST = 1;
+const MAX_ANNOTATIONS_PER_REQUEST = 40;
 
 type AnnotationLevel = 'notice' | 'warning' | 'failure';
 
@@ -30,7 +30,9 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
       title: toolName,
       summary: `${annotations.length} issue(s) found.`,
       text: `${annotations.length} issue(s) found.`,
-      annotations: group
+      annotations: [
+          {"path":"src/annotation.ts","start_line":35,"end_line":36,"start_column":4,"end_column":1,"annotation_level":"failure","message":"35:4  Delete `⏎`","title":"prettier/prettier"}
+      ]
     })
   }
 
