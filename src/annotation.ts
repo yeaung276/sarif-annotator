@@ -77,5 +77,5 @@ export function matchFilePath(path: string){
 
 function stringFromMessage(message: Message, line: number, column: number): string {
   const text = message.text ?? message.markdown ?? ''
-  return `${line}:${column}  "is this lagit"`
+  return `${line}:${column}  ${text.replaceAll('\"', "'")}`
 }
