@@ -1,3 +1,4 @@
-function test(){
-    var a
+function testab(){
+    var aab
+    console.log('aa')
 }

@@ -6,14 +6,25 @@
   "repository": "https://github.com/yeaung276/sarif-annotator.git",
   "author": "yeaung276 <yeyintaung.ya276@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "ncc build src/index.ts -o lib"
+  },
   "dependencies": {
-    "@actions/core": "^1.10.0",
-    "@typescript-eslint/eslint-plugin": "^5.50.0",
-    "@typescript-eslint/parser": "^5.50.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-import-resolver-typescript": "^2.2.0"
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "@actions/io": "^1.1.1",
+    "@types/sarif": "^2.1.4",
+    "ramda": "^0.27.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@types/ramda": "^0.27.47",
+    "@typescript-eslint/parser": "^5.0.0",
+    "@vercel/ncc": "^0.36.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-github": "^4.3.2",
+    "js-yaml": "^4.1.0",
+    "prettier": "2.4.1",
+    "typescript": "^4.4.4"
   }
 }

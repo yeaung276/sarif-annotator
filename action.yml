@@ -6,6 +6,20 @@ inputs:
     description: sarif analysis file location
     required: true
     default: ./results.sarif
+  include:
+    description: list of tool to include in annotation
+    required: false
+    default: null
+  exclude:
+    description: list of tool to exclude in annotation
+    required: false
+    default: null
+  token:
+    type: string
+    description: Github access token
+    required: true
+    default: ${{github.token}}
+
 runs:
-  using: node12
-  main: action/index.js
+  using: node16
+  main: lib/index.js
