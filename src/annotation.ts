@@ -31,7 +31,7 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
       summary: `${annotations.length} issue(s) found.`,
       text: `${annotations.length} issue(s) found.`,
       annotations: [
-          {"path":"src/annotation.ts","start_line":35,"end_line":36,"start_column":4,"end_column":1,"annotation_level":"failure","message":"35:4  Delete `⏎`","title":"prettier/prettier"}
+          {"path":"src/annotation.ts","start_line":35,"end_line":36,"start_column":4,"end_column":1,"annotation_level":"failure","message":"35:4  Delete ``","title":"prettier/prettier"}
       ]
     })
   }
