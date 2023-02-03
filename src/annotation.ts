@@ -30,18 +30,7 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
       title: toolName,
       summary: `${annotations.length} issue(s) found.`,
       text: `${annotations.length} issue(s) found.`,
-      annotations: [
-        {
-          "path":"src/annotation.ts",
-          "start_line":1,
-          "end_line":1,
-          "start_column":9,
-          "end_column":52,
-          "annotation_level":"failure",
-          "title":"prettier/prettier",
-          "message": "1:9  Replace `context,·getOctokit}·from·\'@actions/github\'` with `·context,·getOctokit·}·from·\"@actions/github\"`",
-        }
-      ]
+      annotations: group
     })
   }
 
@@ -86,9 +75,7 @@ export function matchFilePath(path: string){
     return new RegExp('(?<=file:\/\/).*$').exec(path)?.[0] ?? path
 }
 
-const regex = RegExp(/<\/?\w+>/g)
-
 function stringFromMessage(message: Message, line: number, column: number): string {
   const text = message.text ?? message.markdown ?? ''
-  return `${line}:${column}  ${text.replace(regex, `'`)}`
+  return `${line}:${column}  ${text}`
 }
