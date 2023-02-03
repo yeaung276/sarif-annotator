@@ -17,6 +17,7 @@ jobs:
     permissions:
       actions: write
       checks: write
+      discussions: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
