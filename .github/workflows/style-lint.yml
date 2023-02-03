@@ -1,44 +1,44 @@
-# ---
-# # MegaLinter GitHub Action configuration file
-# # More info at https://megalinter.io
-# name: MegaLinter
+---
+# MegaLinter GitHub Action configuration file
+# More info at https://megalinter.io
+name: MegaLinter
 
-# on:
-#   pull_request:
-#     branches: [main]
+on:
+  pull_request:
+    branches: [main]
 
-# concurrency:
-#   group: ${{ github.ref }}-${{ github.workflow }}
-#   cancel-in-progress: true
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
 
-# jobs:
-#   build:
-#     name: MegaLinter
-#     permissions: write-all
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout Code
-#         uses: actions/checkout@v3
-#         with:
-#           token: ${{ secrets.GITHUB_TOKEN }}
-#           fetch-depth: 0
+jobs:
+  build:
+    name: MegaLinter
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
-#       - name: MegaLinter
-#         id: ml
-#         uses: oxsecurity/megalinter@v6
-#         env:
-#           EXTENDS: .maga-linter.yml
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       - name: Annotation
-#         if: ${{ success() }} || ${{ failure() }}
-#         uses: yeaung276/sarif-annotator@test
-#         with: 
-#           sarif_path: 'megalinter-reports/megalinter-report.sarif'
-#       - name: Archive production artifacts
-#         if: ${{ success() }} || ${{ failure() }}
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: MegaLinter reports
-#           path: |
-#             megalinter-reports
-#             mega-linter.log
+      - name: MegaLinter
+        id: ml
+        uses: oxsecurity/megalinter@v6
+        env:
+          EXTENDS: .maga-linter.yml
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Annotation
+        if: ${{ success() }} || ${{ failure() }}
+        uses: yeaung276/sarif-annotator@test-v2
+        with: 
+          sarif_path: 'megalinter-reports/megalinter-report.sarif'
+      - name: Archive production artifacts
+        if: ${{ success() }} || ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: MegaLinter reports
+          path: |
+            megalinter-reports
+            mega-linter.log
