@@ -8,4 +8,4 @@ TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
 TYPESCRIPT_DEFAULT_STYLE: prettier
 PRE_COMMANDS:
   - command: yarn
-  - cwd: "workspace"
+    cwd: "workspace"
