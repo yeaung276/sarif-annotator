@@ -2,11 +2,13 @@
 SARIF_REPORTER: true
 GITHUB_COMMENT_REPORTER: true
 VALIDATE_ALL_CODEBASE: false
+DISABLE: REPOSITORY_DEVSKIM
 LINTER_RULES_PATH: '.'
 # linter-configs js/ts files
 TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
 TYPESCRIPT_DEFAULT_STYLE: prettier
-DISABLE: REPOSITORY_DEVSKIM
+JAVASCRIPT_DEFAULT_STYLE: prettier
+JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
 PRE_COMMANDS:
-  - command: yarn
+  - command: yarn install
     cwd: "workspace"

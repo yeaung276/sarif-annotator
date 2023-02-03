@@ -100,7 +100,7 @@ export function getAnnotationsFromSarifResult(results: Result[]): Annotation[]{
             start_column: location.region?.startColumn ?? 0,
             end_column: location.region?.endColumn ?? 0,
             annotation_level: convertAnotationLevel(result.level),
-            message: stringFromMessage(result.message),
+            message: stringFromMessage(result.message, location.region?.startLine ?? 0, location.region?.startColumn ?? 0),
             title: result.ruleId ?? 'Unspecified'
         }
     })
@@ -112,7 +112,7 @@ export function matchFilePath(path: string){
 
 const regex = RegExp(/<\/?\w+>/g)
 
-function stringFromMessage(message: Message): string {
+function stringFromMessage(message: Message, line: number, column: number): string {
   const text = message.text ?? message.markdown ?? ''
-  return text.replace(regex, `'`)
+  return `${line}:${column}  ${text.replace(regex, `'`)}`
 }
