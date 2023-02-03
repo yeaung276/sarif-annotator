@@ -4,16 +4,16 @@ import { Message, Result } from 'sarif';
 import { splitEvery } from 'ramda';
 import { sendRequest } from './github';
 
-const MAX_ANNOTATIONS_PER_REQUEST = 40;
+const MAX_ANNOTATIONS_PER_REQUEST = 1;
 
 type AnnotationLevel = 'notice' | 'warning' | 'failure';
 
 export type Annotation = {
     path: string
-    start_line: number
-    end_line: number,
-    start_column: number,
-    end_column: number,
+    start_line?: number
+    end_line?: number,
+    start_column?: number,
+    end_column?: number,
     annotation_level: AnnotationLevel,
     message: string,
     title: string
@@ -30,9 +30,7 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
       title: toolName,
       summary: `${annotations.length} issue(s) found.`,
       text: `${annotations.length} issue(s) found.`,
-      annotations: [
-          {"path":"src/annotation.ts","start_line":35,"end_line":36,"start_column":4,"end_column":1,"annotation_level":"failure","message":"35:4  Delete ``","title":"prettier/prettier"}
-      ]
+      annotations: group
     })
   }
 
@@ -62,10 +60,10 @@ export function getAnnotationsFromSarifResult(results: Result[]): Annotation[]{
         const location = result.locations?.[0].physicalLocation ?? {}
         return {
             path: matchFilePath(location.artifactLocation?.uri || ''),
-            start_line: location.region?.startLine ?? 0,
-            end_line: location.region?.endLine ?? 0,
-            start_column: location.region?.startColumn ?? 0,
-            end_column: location.region?.endColumn ?? 0,
+            start_line: location.region?.startLine,
+            end_line: location.region?.endLine,
+            start_column: location.region?.startLine === location.region?.endLine ? location.region?.startColumn: undefined,
+            end_column: location.region?.startLine === location.region?.endLine ? location.region?.endColumn : undefined,
             annotation_level: convertAnotationLevel(result.level),
             message: stringFromMessage(result.message, location.region?.startLine ?? 0, location.region?.startColumn ?? 0),
             title: result.ruleId ?? 'Unspecified'
