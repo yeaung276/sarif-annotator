@@ -4,7 +4,7 @@ import { Message, Result } from 'sarif';
 import { splitEvery } from 'ramda';
 import { sendRequest } from './github';
 
-const MAX_ANNOTATIONS_PER_REQUEST = 40;
+const MAX_ANNOTATIONS_PER_REQUEST = 1;
 
 type AnnotationLevel = 'notice' | 'warning' | 'failure';
 
@@ -79,3 +79,4 @@ function stringFromMessage(message: Message, line: number, column: number): stri
   const text = message.text ?? message.markdown ?? ''
   return `${line}:${column}  ${text.replaceAll('\"', "'")}`
 }
+
