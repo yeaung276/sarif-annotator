@@ -30,7 +30,7 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
       title: toolName,
       summary: `${annotations.length} issue(s) found.`,
       text: `${annotations.length} issue(s) found.`,
-      annotations: group,
+      annotations,
     })
   }
 
