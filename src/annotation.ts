@@ -17,10 +17,10 @@ type Annotation = {
 
 export async function publishAnnotation(toolName: string, annotations: Annotation[]){
   if(annotations.length === 0){
-    core.info('no annotation found, skipping')
+    core.info(`no annotation found, skipping ${toolName}`)
     return
   }
-  core.info('publishing output')
+  core.info(`publishing output for ${toolName}`)
   const token = core.getInput('token')
   const octokit = getOctokit(token)
   let sha = context.sha

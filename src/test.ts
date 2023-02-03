@@ -1,4 +1,4 @@
-function testab(){
-    var aab
-    console.log('aa')
+function testa(){
+    var aa
+    console.log('ab')
 }
