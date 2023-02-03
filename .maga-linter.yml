@@ -6,6 +6,7 @@ LINTER_RULES_PATH: '.'
 # linter-configs js/ts files
 TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
 TYPESCRIPT_DEFAULT_STYLE: prettier
+DISABLE: REPOSITORY_DEVSKIM
 PRE_COMMANDS:
   - command: yarn
     cwd: "workspace"

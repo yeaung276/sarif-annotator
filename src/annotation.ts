@@ -72,15 +72,17 @@ export async function publishAnnotation(toolName: string, annotations: Annotatio
 }
 
 function convertAnotationLevel(l: string | undefined): AnnotationLevel {
-    switch (l) {
-      case 'error':
-        return 'failure'
-        break
-      case 'note':
-        return 'notice'
-      default:
-        return l as AnnotationLevel
-    }
+  switch (l) {
+    case 'error':
+      return 'failure'
+    case 'none':
+    case 'note':
+      return 'notice'
+    case 'warning':
+      return 'warning'
+    default:
+      return 'notice'
+  }
   }
 
 export function getAnnotationsFromSarifResult(results: Result[]): Annotation[]{
