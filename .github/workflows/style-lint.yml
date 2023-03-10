@@ -6,6 +6,8 @@ name: MegaLinter
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -17,7 +19,6 @@ jobs:
     permissions:
       actions: write
       checks: write
-      discussions: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -34,8 +35,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Annotation
         if: ${{ success() }} || ${{ failure() }}
-        uses: yeaung276/sarif-annotator@test-v2
-        with: 
+        uses: yeaung276/sarif-annotator@1.0.0
+        with:
           sarif_path: 'megalinter-reports/megalinter-report.sarif'
       - name: Archive production artifacts
         if: ${{ success() }} || ${{ failure() }}
