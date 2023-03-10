@@ -1,5 +1,5 @@
 ---
-name: 
+name: 'SARIF annotator'
 description: Annotate SARIF analysis files
 inputs:
   sarif_path:
