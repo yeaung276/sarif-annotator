@@ -15,9 +15,9 @@ jobs:
   build:
     name: MegaLinter
     permissions:
-      actions: write
-      checks: write
-      discussions: write
+      actions: write-all
+      checks: write-all
+      discussions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -35,7 +35,7 @@ jobs:
       - name: Annotation
         if: ${{ success() }} || ${{ failure() }}
         uses: yeaung276/sarif-annotator@1.0.0
-        with: 
+        with:
           sarif_path: 'megalinter-reports/megalinter-report.sarif'
       - name: Archive production artifacts
         if: ${{ success() }} || ${{ failure() }}
