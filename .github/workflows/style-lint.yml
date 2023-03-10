@@ -17,9 +17,8 @@ jobs:
   build:
     name: MegaLinter
     permissions:
-      actions: write-all
-      checks: write-all
-      discussions: write-all
+      actions: write
+      checks: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
