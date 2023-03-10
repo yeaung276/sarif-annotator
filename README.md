@@ -10,3 +10,4 @@ Example.
     with: 
         sarif_path: 'megalinter-reports/megalinter-report.sarif'
 ```
+Reference: [https://docs.oasis-open.org/sarif/sarif/v2.0/csprd02/sarif-v2.0-csprd02.html](https://docs.oasis-open.org/sarif/sarif/v2.0/csprd02/sarif-v2.0-csprd02.html)
