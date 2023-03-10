@@ -34,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Annotation
         if: ${{ success() }} || ${{ failure() }}
-        uses: yeaung276/sarif-annotator@test-v2
+        uses: yeaung276/sarif-annotator@1.0.0
         with: 
           sarif_path: 'megalinter-reports/megalinter-report.sarif'
       - name: Archive production artifacts
