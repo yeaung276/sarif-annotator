@@ -70,7 +70,7 @@ export function getAnnotationsFromSarifResult(results: Result[]): Annotation[] {
       return {
         path: matchFilePath(location.artifactLocation?.uri || ""),
         start_line: location.region?.startLine,
-        end_line: location.region?.endLine,
+        end_line: location.region?.endLine || location.region?.startLine,
         start_column:
           location.region?.startLine === location.region?.endLine
             ? location.region?.startColumn
